@@ -53,7 +53,7 @@ public class NovelRepository implements NovelInterface {
     @Override
     public List<ReadNovelEntity> findByNnumRead(int nnum) {
         List<ReadNovelEntity> result =
-                em.createQuery("select n from readNovel n where n.nnum=nnum",
+                em.createQuery("select n from readNovel n where n.nnum= nnum",
                         ReadNovelEntity.class).getResultList();
         return result;
     }

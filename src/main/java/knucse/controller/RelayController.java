@@ -12,6 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 @Controller
 public class RelayController {
@@ -46,23 +50,19 @@ public class RelayController {
         model.addAttribute("context", entityList);
         return "/novel/read";
     }
-    @PostMapping("/novel/{nnum}/new")
-    public String register_new_context(@PathVariable int nnum, AccountForm an, ContextForm cn, Model model){
-        AccountEntity a = new AccountEntity();
+    @PostMapping("/novels/{nnum}")
+    public String register_new_context(@PathVariable int nnum, ContextForm cn, Model model){
         ContextEntity e = new ContextEntity();
-        a.setUid(an.getId());
-        a.setUpw(an.getPw());
         e.setNnum(nnum);
-        e.setUid(an.getId());
         e.setCtext(cn.getContext());
-        boolean isTrue = accountService.isVaildAccount(a);
-        if(isTrue){
-            contextService.join(e);
-            System.out.println("----- register_context success------");
-        } else{
-            System.out.println("----- register_context fail------");
-        }
-        model.addAttribute("cn", cn);
+        e.setUnum(1);
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String format = sdf.format(java.sql.Date.from(d.toInstant()));
+        e.setCdate(format);
+        contextService.join(e);
+        List<ReadNovelEntity> entityList = contextService.findContext(nnum);
+        model.addAttribute("context", entityList);
         return "/novel/read";
     }
     @GetMapping(value="/chaos")

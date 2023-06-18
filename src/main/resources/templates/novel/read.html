@@ -95,6 +95,7 @@
 </head>
 <body>
     <div class="container">
+        <form action="" method="post">
         <div class="layout">
             <div class="show">
                 <div class="context">
@@ -102,11 +103,7 @@
                         <tbody>
                             <tr th:each="con: ${context}">
                                 <td th:text="${con.cid} + '번째'">100 번째</td>
-                            </tr>
-                            <tr th:each="con: ${context}">
                                 <td th:text="${con.ctext}">텍스트 라인</td>
-                            </tr>
-                            <tr th:each="con: ${context}">
                                 <td th:text="${con.uid}">유저 아이디</td>
                             </tr>
                                 <!---<td><a th:href="@{/novels/{nnum}/update/{cid}(nnum = ${line.nnum}, cid = ${line.cid})}">수정</a></td>
@@ -123,24 +120,22 @@
                     <button type="button">피드백 목록</button>
                 </a>-->
                 <div class="grid">
-                    <button class="margin" onclick="location.href='/'">돌아가기</button>
+                    <button class="margin" onclick="location.href='/novels/novel_list'">돌아가기</button>
                     <!--<form th:action="@{/novels/{nnum}(nnum=${context[0].nnum})}" th:method="post">
                     <input class="margin" id="id" name="id" placeholder="id 입력" type="text">
                     <input class="margin" id="pw" name="pw" placeholder="비밀번호" type="password">
                     </form>-->
                 </div>
             </div>
-            <form action="./" method="post">
+
             <div class="type">
                 <input id="context" name="context" placeholder="내용 입력" style="height: 50px;  font-size: 20px;" type="text">
             </div>
-            </form>
-            <form action="./" method="post">
             <div class="insert">
                 <button type="submit">등록</button>
             </div>
-            </form>
         </div>
+        </form>
     </div>
 </body>
 </html>
