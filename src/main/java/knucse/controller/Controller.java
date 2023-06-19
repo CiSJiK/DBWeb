@@ -10,6 +10,6 @@ public class Controller {
     }
     @GetMapping("/subject/list")
     public String novelList() {
-        return
+        return "";
     }
 }

@@ -2,7 +2,7 @@ package knucse.domain;
 import jakarta.persistence.*;
 
 @Entity
-public class feedback {
+public class Feedback {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int fid;
     private String fname;
