@@ -2,6 +2,8 @@ package knucse.repository;
 
 import jakarta.persistence.EntityManager;
 import knucse.domain.Feedback;
+import knucse.entity.FeedbackEntity;
+
 import java.util.Optional;
 import java.util.List;
 public class FeedbackRepository implements FeedbackInterfaceRepository{
@@ -12,20 +14,19 @@ public class FeedbackRepository implements FeedbackInterfaceRepository{
     }
 
     @Override
-    public Feedback save(Feedback feedback){
+    public void save(FeedbackEntity feedback){
         em.persist(feedback);
-        return feedback;
     }
 
     @Override
-    public Optional<Feedback> findByFid(int fid){
-        Feedback feedback = em.find(Feedback.class, fid);
+    public Optional<FeedbackEntity> findByFid(int fid){
+        FeedbackEntity feedback = em.find(FeedbackEntity.class, fid);
         return Optional.ofNullable(feedback);
     }
 
     @Override
-    public List<Feedback> findAll(){
-        List<Feedback> result = em.createQuery("select f from feedback f", Feedback.class)
+    public List<FeedbackEntity> findAll(){
+        List<FeedbackEntity> result = em.createQuery("select f from feedback f", FeedbackEntity.class)
                 .getResultList();
         return result;
     }

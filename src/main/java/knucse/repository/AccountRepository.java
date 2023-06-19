@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import knucse.domain.Account;
+import knucse.entity.AccountEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,20 +16,19 @@ public class AccountRepository implements AccountInterfaceRepository {
     public AccountRepository(EntityManager em){
         this.em = em;
     }
-    @Override @Transactional
-    public Account save(Account account) {
+    @Override
+    public void save(AccountEntity account) {
         em.persist(account);
-        return account;
     }
 
     @Override
-    public Optional<Account> findByUid(String uid) {
-        Account account = em.find(Account.class, uid);
+    public Optional<AccountEntity> findByUid(String uid) {
+        AccountEntity account = em.find(AccountEntity.class, uid);
         return Optional.ofNullable(account);
     }
 
     @Override
-    public boolean checkLogin(Account account){
+    public boolean checkLogin(AccountEntity account){
         String jpql = "select a from account a where a.uid = :uid and a.upw = :upw";
         TypedQuery<Account> query = em.createQuery(jpql, Account.class);
         query.setParameter("uid", account.getUid());

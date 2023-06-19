@@ -3,6 +3,7 @@ package knucse;
 import jakarta.persistence.EntityManager;
 import knucse.repository.*;
 import knucse.service.AccountService;
+import knucse.service.ContextService;
 import knucse.service.FeedbackService;
 import knucse.service.NovelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +47,9 @@ public class SpringConfig {
     public NovelInterfaceRepository novelInterfaceRepository(){
         return new NovelRepository(em);
     }
+
+    @Bean
+    public ContextService contextService(){ return  new ContextService(ContextInterfaceRepository()); }
+    @Bean
+    public ContextInterfaceRepository contextInterfaceRepository() { return new ContextRepository(em); }
 }

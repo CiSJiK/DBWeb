@@ -2,6 +2,7 @@ package knucse.service;
 
 import jakarta.transaction.Transactional;
 import knucse.domain.Account;
+import knucse.entity.AccountEntity;
 import knucse.repository.AccountInterfaceRepository;
 
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class AccountService {
         this.accountInterfaceRepository =accountInterfaceRepository;
     }
 
-    public String join(Account account){
+    public String join(AccountEntity account){
         System.out.println();
         System.out.println("<<<<< AccountService.join 회원 가입 서비스 시작 >>>>> ");
         System.out.println("account.uid = " + account.getUid());
@@ -23,8 +24,8 @@ public class AccountService {
         return account.getUid();
     }
 
-    private void validDuplicateAccount(Account account){
-        Optional<Account> result = accountInterfaceRepository.findByUid(account.getUid());
+    private void validDuplicateAccount(AccountEntity account){
+        Optional<AccountEntity> result = accountInterfaceRepository.findByUid(account.getUid());
         result.ifPresent(m ->{
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         });

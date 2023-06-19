@@ -2,6 +2,8 @@ package knucse.repository;
 
 import jakarta.persistence.EntityManager;
 import knucse.domain.Novel;
+import knucse.entity.NovelEntity;
+
 import java.util.Optional;
 import java.util.List;
 public class NovelRepository implements NovelInterfaceRepository{
@@ -10,20 +12,19 @@ public class NovelRepository implements NovelInterfaceRepository{
     public NovelRepository(EntityManager em) { this.em = em; }
 
     @Override
-    public Novel save(Novel novel){
+    public void save(NovelEntity novel){
         em.persist(novel);
-        return novel;
     }
 
     @Override
-    public Optional<Novel> findByNnum(int nnum){
-        Novel novel = em.find(Novel.class, nnum);
+    public Optional<NovelEntity> findByNnum(int nnum){
+        NovelEntity novel = em.find(NovelEntity.class, nnum);
         return Optional.ofNullable(novel);
     }
 
     @Override
-    public List<Novel> findAll() {
-        List<Novel> result = em.createQuery("select n from novel n", Novel.class)
+    public List<NovelEntity> findAll() {
+        List<NovelEntity> result = em.createQuery("select n from novel n", NovelEntity.class)
                 .getResultList();
         return result;
     }

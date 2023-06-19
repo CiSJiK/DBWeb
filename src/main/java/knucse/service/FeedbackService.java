@@ -1,6 +1,7 @@
 package knucse.service;
 
 import knucse.domain.Feedback;
+import knucse.entity.FeedbackEntity;
 import knucse.repository.FeedbackInterfaceRepository;
 import java.util.Optional;
 import java.util.List;
@@ -10,7 +11,7 @@ public class FeedbackService {
         this.feedbackInterfaceRepository = feedbackInterfaceRepository;
     }
 
-    public int join(Feedback feedback){
+    public int join(FeedbackEntity feedback){
         System.out.println();
         System.out.println("<<<<< FeedbackService.join feedback 등록 서비스 시작 >>>>> ");
         System.out.println("feedback.fid = " + feedback.getFid());
@@ -20,10 +21,10 @@ public class FeedbackService {
         return feedback.getFid();
     }
 
-    public List<Feedback> findFeedback(){
+    public List<FeedbackEntity> findFeedback(){
         return feedbackInterfaceRepository.findAll();
     }
-    public Optional<Feedback> findOne(int fid){
+    public Optional<FeedbackEntity> findOne(int fid){
         return feedbackInterfaceRepository.findByFid(fid);
     }
 }

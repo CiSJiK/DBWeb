@@ -1,12 +1,13 @@
 package knucse.repository;
 
 import knucse.domain.Novel;
+import knucse.entity.NovelEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface NovelInterfaceRepository {
-    Novel save(Novel novel);
-    public Optional<Novel> findByNnum(int nnum);
-    List<Novel> findAll();
+    void save(NovelEntity novel);
+    Optional<NovelEntity> findByNnum(int nnum);
+    List<NovelEntity> findAll();
 }
