@@ -1,17 +1,34 @@
 package knucse.domain;
+import jakarta.persistence.*;
 
-import lombok.Data;
-
+@Entity
 public class Feedback {
-    @Data
-    public static class Create{
-        public String fname;
-        public String fcon;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int fid;
+    private String fname;
+    private String fcon;
+
+    public int getFid() {
+        return fid;
     }
-    @Data
-    public static class Simple{
-        private int fid;
-        private String fname;
-        private String fcon;
+
+    public void setFid(int fid) {
+        this.fid = fid;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getFcon() {
+        return fcon;
+    }
+
+    public void setFcon(String fcon) {
+        this.fcon = fcon;
     }
 }
