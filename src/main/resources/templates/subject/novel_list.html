@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+         width: 100%;
+         height: 100%;
+         border:1px;
+         solid black;
+        }
+        div.left {
+         width: 70%;
+         float: left;
+         box-sizing: border-box;
+         margin-right: 30px;
+        }
+        div.right {
+         width: 30%;
+         float: right;
+         box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<div class="left">
+    <form action="/novel/novel_list" method="post">
+        <div>
+            <table border ="1" width="80%" height="200" bordercolor="black">
+                <thead>
+                <tr>
+                    <th cospan="1"> 소설 목록 </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td nname></td>
+                </tr>
+                <tr th:each="novel":${books}>
+                    <td th:text="${novel.nname}">
+                        <a th:href="@{novel/{nname}(name = ${novel.nname})}"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+<div class="right">
+    <button type="button" onclick="location.href='novel/complete_novel_list';"> 완결 작품 </button>
+    <div class="form-group">
+        <p><label for="post_title"></label>
+            <input type="text" id="post_title" name="post_title" placeholder="글 제목 입력">
+        </p>
+        <button type="submit"> 새글 작성 </button>
+    </div>
+    <button type="reset"> 돌아가기 </button>
+</div>
+</body>
+</html>
