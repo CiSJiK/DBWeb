@@ -30,5 +30,13 @@ public class AccountService {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         });
     }
+    /*
+    유효한 계정인지 검증
+     */
+    public boolean isVaildAccount(AccountEntity account){
+        Optional<AccountEntity> result = accountInterfaceRepository.findByUid(account.getUid());
+        if(account.getUpw().equals(result.get().getUpw())) return true;
+        else return false;
+    }
 
 }

@@ -1,15 +1,21 @@
 package knucse.service;
 
 import knucse.domain.Novel;
+import knucse.entity.NovelDoneListEntity;
 import knucse.entity.NovelEntity;
+import knucse.entity.NovelListEntity;
 import knucse.repository.NovelInterfaceRepository;
+import knucse.repository.NovelListInterfaceRepository;
+
 import java.util.List;
 import java.util.Optional;
 public class NovelService {
     private final NovelInterfaceRepository novelInterfaceRepository;
+    private final NovelListInterfaceRepository nlr;
 
-    public NovelService(NovelInterfaceRepository novelInterfaceRepository){
+    public NovelService(NovelInterfaceRepository novelInterfaceRepository, NovelListInterfaceRepository r){
         this.novelInterfaceRepository = novelInterfaceRepository;
+        nlr = r;
     }
 
     public int join(NovelEntity novel) {
@@ -21,12 +27,14 @@ public class NovelService {
         novelInterfaceRepository.save(novel);
         return novel.getNnum();
     }
-
-    public List<NovelEntity> findNovel(){
-        return novelInterfaceRepository.findAll();
+    /*
+    전체 소설 목록 불러오기
+     */
+    public List<NovelListEntity> findNovel(){
+        return nlr.findAll();
     }
-
-    public Optional<NovelEntity> findOne(int novelnum){
-        return novelInterfaceRepository.findByNnum(novelnum);
-    }
+    /*
+    완결된 소설 목록 불러오기
+     */
+    public List<NovelDoneListEntity> findDone(){return nlr.findDone();}
 }
