@@ -2,15 +2,21 @@ package knucse.service;
 
 import knucse.domain.Context;
 import knucse.entity.ContextEntity;
+import knucse.entity.ReadNovelEntity;
 import knucse.repository.ContextInterfaceRepository;
+import knucse.repository.ReadNovelInterfaceRepository;
+
 import java.util.List;
 import java.util.Optional;
 
 public class ContextService {
     private final ContextInterfaceRepository contextInterfaceRepository;
+    private final ReadNovelInterfaceRepository readnovel;
 
-    public ContextService(ContextInterfaceRepository contextInterfaceRepository){
+    public ContextService(ContextInterfaceRepository contextInterfaceRepository, ReadNovelInterfaceRepository r){
         this.contextInterfaceRepository = contextInterfaceRepository;
+        readnovel = r;
+
     }
 
     public int join(ContextEntity context){
@@ -23,8 +29,8 @@ public class ContextService {
         contextInterfaceRepository.save(context);
         return context.getCid();
     }
-    public List<ContextEntity> findContext(){
-        return contextInterfaceRepository.findAll();
+    public List<ReadNovelEntity> findContext(int nnum){
+        return readnovel.findByNnum(nnum);
     }
     public Optional<ContextEntity> findOne(int cid){
         return contextInterfaceRepository.findByCid(cid);

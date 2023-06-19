@@ -2,13 +2,22 @@ package knucse.service;
 
 import knucse.domain.Feedback;
 import knucse.entity.FeedbackEntity;
+import knucse.entity.FeedbackListEntity;
+import knucse.entity.ReadFeedbackEntity;
 import knucse.repository.FeedbackInterfaceRepository;
+import knucse.repository.FeedbackListInterfaceRepository;
+import knucse.repository.ReadFeedbackInterfaceRepository;
+
 import java.util.Optional;
 import java.util.List;
 public class FeedbackService {
     private final FeedbackInterfaceRepository feedbackInterfaceRepository;
-    public FeedbackService(FeedbackInterfaceRepository feedbackInterfaceRepository){
+    private final FeedbackListInterfaceRepository repository;
+    private final ReadFeedbackInterfaceRepository readfeed;
+    public FeedbackService(FeedbackInterfaceRepository feedbackInterfaceRepository, FeedbackListInterfaceRepository r, ReadFeedbackInterfaceRepository f){
         this.feedbackInterfaceRepository = feedbackInterfaceRepository;
+        repository = r;
+        readfeed = f;
     }
 
     public int join(FeedbackEntity feedback){
@@ -20,11 +29,16 @@ public class FeedbackService {
         feedbackInterfaceRepository.save(feedback);
         return feedback.getFid();
     }
-
-    public List<FeedbackEntity> findFeedback(){
-        return feedbackInterfaceRepository.findAll();
+    /*
+    특정 소설 번호의 피드백 목록 가져오기
+     */
+    public List<FeedbackListEntity> getFeedbacks(int nnum){
+        return repository.findByNnum(nnum);
     }
-    public Optional<FeedbackEntity> findOne(int fid){
-        return feedbackInterfaceRepository.findByFid(fid);
+    /*
+    특정 피드백의 내용 가져오기
+     */
+    public Optional<ReadFeedbackEntity> findOne(int fid){
+        return readfeed.findByFid(fid);
     }
 }

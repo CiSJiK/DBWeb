@@ -32,24 +32,31 @@ public class SpringConfig {
 
     @Bean
     public FeedbackService feedbackService(){
-        return new FeedbackService(feedbackInterfaceRepository());
+        return new FeedbackService(feedbackInterfaceRepository(), flir(), rfir());
     }
     @Bean
     public FeedbackInterfaceRepository feedbackInterfaceRepository(){
         return new FeedbackRepository(em);
     }
+    @Bean
+    public FeedbackListInterfaceRepository flir() {return new FeedbackListRepository(em);}
+    @Bean
+    public ReadFeedbackInterfaceRepository rfir(){return new ReadFeedbackRepositoy(em);}
 
     @Bean
     public NovelService novelService() {
-        return new NovelService(novelInterfaceRepository());
+        return new NovelService(novelInterfaceRepository(), nlir());
     }
     @Bean
     public NovelInterfaceRepository novelInterfaceRepository(){
         return new NovelRepository(em);
     }
-
     @Bean
-    public ContextService contextService(){ return  new ContextService(contextInterfaceRepository()); }
+    public NovelListInterfaceRepository nlir() { return new NovelListRepository(em); }
+    @Bean
+    public ContextService contextService(){ return  new ContextService(contextInterfaceRepository(), readnovel()); }
     @Bean
     public ContextInterfaceRepository contextInterfaceRepository() { return new ContextRepository(em); }
+    @Bean
+    public ReadNovelInterfaceRepository readnovel(){ return new ReadNovelRepository(em);}
 }
