@@ -29,14 +29,15 @@ public class RelayController {
         this.feedbackService = feedbackService;
         this.novelService = novelService;
     }
-    @GetMapping("/")
+    @GetMapping("/index")
     public String home() {
-        return "home";
+        System.out.println("call home");
+        return "/home";
     }
     @GetMapping(value="/novels/novel_list")
     public String call_novel_with_topics(Model model) {
         List<NovelListEntity> novelList = novelService.findNovel();
-        model.addAttribute("novelList", novelList)
+        model.addAttribute("novelList", novelList);
         return "/novels/novel_list";
     }
     @GetMapping(value="/chaos")

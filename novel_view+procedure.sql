@@ -1,10 +1,10 @@
 create or replace view novelList
 as
-select nnum, nname from novel order by nnum asc;
+select nnum, nname from novel order by nnum desc;
 
 create or replace view novelDoneList
 as
-select novel.nnum, novel.nname from novel, ndone where novel.nnum = ndone.nnum and ndone.done = true order by novel.nnum asc;
+select novel.nnum, novel.nname from novel, ndone where novel.nnum = ndone.nnum and ndone.done = true order by novel.nnum desc;
 
 create or replace view feedbackList
 as
