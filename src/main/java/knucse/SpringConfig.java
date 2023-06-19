@@ -23,7 +23,7 @@ public class SpringConfig {
 
     @Bean
     public AccountService accountService() {
-        return new AccountService(AccountInterfaceRepository());
+        return new AccountService(accountInterfaceRepository());
     }
     @Bean
     public AccountInterfaceRepository accountInterfaceRepository(){
@@ -32,7 +32,7 @@ public class SpringConfig {
 
     @Bean
     public FeedbackService feedbackService(){
-        return new FeedbackService(FeedbackInterfaceRepository());
+        return new FeedbackService(feedbackInterfaceRepository());
     }
     @Bean
     public FeedbackInterfaceRepository feedbackInterfaceRepository(){
@@ -41,7 +41,7 @@ public class SpringConfig {
 
     @Bean
     public NovelService novelService() {
-        return new NovelService(NovelInterfaceRepository());
+        return new NovelService(novelInterfaceRepository());
     }
     @Bean
     public NovelInterfaceRepository novelInterfaceRepository(){
@@ -49,7 +49,7 @@ public class SpringConfig {
     }
 
     @Bean
-    public ContextService contextService(){ return  new ContextService(ContextInterfaceRepository()); }
+    public ContextService contextService(){ return  new ContextService(contextInterfaceRepository()); }
     @Bean
     public ContextInterfaceRepository contextInterfaceRepository() { return new ContextRepository(em); }
 }
