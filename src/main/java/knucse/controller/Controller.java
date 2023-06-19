@@ -51,15 +51,15 @@ public class Controller {
 
     @GetMapping(value="/novels/finished_novel_list")
     public String call_the_finished_novel_page(){
-        return "/novel_list";
+        return "/novels/novel_list";
     }
     @GetMapping("/novel/writing/{novel_name}/new")
     public String call_new_novel_page(@PathVariable String novel_name) {
-        return "Read";
+        return "/novels/read";
     }
     @GetMapping("/novel/writing/{novel_name}")
     public String call_writing_novel_page(@PathVariable String novel_name){
-        return "Read";
+        return "/novel/";
     }
     @PostMapping(value="/subject/novel_list")
     public String call_main_page(){
