@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface NovelListInterfaceRepository {
     List<NovelDoneListEntity> findDone();
     List<NovelListEntity> findAll();
+    int findNewNnum();
 }

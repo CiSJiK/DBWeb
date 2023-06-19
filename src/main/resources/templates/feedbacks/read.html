@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta content="user-scalable=no initial-scale=1" name="viewport">
@@ -92,10 +92,11 @@
 </head>
 <body>
     <div class="container">
+        <form th:action="@{/novel/{nnum}/feedback(nnum=$novel.nnum)" th:method="post">
         <div class="layout">
             <div class="show">
-                <div class="context" th:each="readFeedback : ${readFeedback}">
-                    <span th:text="${readFeedback.fcon} + " style="font-size: 20px; margin: 7px;"></span>
+                <div class="context" th:each="feedback : ${feedback}">
+                    <span th:text="${feedback.fcon}" style="font-size: 20px; margin: 7px;"></span>
                     <br/>
                 </div>
             </div>
@@ -107,12 +108,13 @@
                 </div>
             </div>
             <div class="type">
-                <input th:id="context" name="context" placeholder="내용 입력" style="height: 50px;  font-size: 20px;" type="text">
+                <input id="context" name="context" placeholder="내용 입력" style="height: 50px;  font-size: 20px;" type="text">
             </div>
             <div class="insert">
-                <button type="submit">등록</button>
+                <button type="submit">피드백 등록</button>
             </div>
         </div>
+        </form>
     </div>
 </body>
 </html>

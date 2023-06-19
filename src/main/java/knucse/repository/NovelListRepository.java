@@ -26,4 +26,12 @@ public class NovelListRepository implements NovelListInterfaceRepository{
                 .getResultList();
         return result;
     }
+
+    @Override
+    public int findNewNnum(){
+        List<NovelListEntity> result = em.createQuery("select MAX(nnum) from novelList n",NovelListEntity.class)
+                .getResultList();
+        NovelListEntity temp = result.get(0);
+        return temp.getNnum();
+    }
 }

@@ -38,13 +38,13 @@ public class RelayController {
     public String call_novel_with_topics(Model model) {
         List<NovelListEntity> novelList = novelService.findNovel();
         model.addAttribute("novelList", novelList);
-        return "/novels/novel_list";
+        return "/novel/novel_list";
     }
     @GetMapping(value="/chaos")
     public String call_novel_without_topics(Model model) {
         List<ReadNovelEntity> novelWithoutTopic = contextService.findContext(0);
         model.addAttribute("novelWithoutTopic", novelWithoutTopic);
-        return "/novels/read";
+        return "/novel/read";
     }
     @GetMapping(value="/create_account")
     public String call_member_signup_page() {
@@ -60,17 +60,52 @@ public class RelayController {
     public String call_reading_novel_page(@PathVariable int nnum, Model model){
         List<ReadNovelEntity> ReadNovelEntity = contextService.findContext(nnum);
         model.addAttribute("context", ReadNovelEntity);
-        return "read";
+        return "/novel/read";
     }
 
     @GetMapping(value = "/novel/complete_novel_list")
     public String call_complete_novel_page(Model model){
         List<NovelDoneListEntity> novelDoneListEntity = novelService.findDone();
         model.addAttribute("novelDoneListEntity", novelDoneListEntity);
-        return "novel_list";
+        return "/novel/novel_list";
     }
 
+    @PostMapping(value = "/novel/{nnum}")
+    public String register_new_novel(@PathVariable int nnum, Model model){
+        int num = novelService.findMaxNnum();
+        List<ReadNovelEntity> readNovelEntity = contextService.findContext(nnum);
+        model.addAttribute("readNovelEntity", readNovelEntity);
+        return "/novel/read";
+    }
 
-
-
+    @PostMapping("/novel/{nnum}")
+    public String register_new_context(@PathVariable int nnum, AccountEntity an, ContextEntity cn, Model model){
+        boolean isTrue = accountService.isVaildAccount(an);
+        if(isTrue){
+            contextService.join(cn);
+            System.out.println("----- register_context success------");
+        } else{
+            System.out.println("----- register_context fail------");
+        }
+        model.addAttribute("cn", cn);
+        return "/novel/read";
+    }
+    @GetMapping("/novel/{nnum}/feedback")
+    public String call_feedback_page(@PathVariable int nnum, Model model){
+        List<FeedbackListEntity> fb =  feedbackService.getFeedbacks(nnum);
+        model.addAttribute("fb", fb);
+        return "/feedback/read";
+    }
+    @PostMapping("/novel/{nnum}/feedback")
+    public String register_feedback(@PathVariable int nnum, AccountEntity an, FeedbackEntity fn, Model model){
+        boolean isTrue = accountService.isVaildAccount(an);
+        if(isTrue){
+            feedbackService.join(fn);
+            System.out.println("----- register_context success------");
+        } else{
+            System.out.println("----- register_context fail------");
+        }
+        model.addAttribute("fn", fn);
+        return "/feedback/read";
+    }
 }

@@ -37,4 +37,5 @@ public class NovelService {
     완결된 소설 목록 불러오기
      */
     public List<NovelDoneListEntity> findDone(){return nlr.findDone();}
+    public int findMaxNnum(){return nlr.findNewNnum();}
 }
