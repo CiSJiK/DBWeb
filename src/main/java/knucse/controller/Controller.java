@@ -24,15 +24,15 @@ public class Controller {
     }
     @GetMapping("/")
     public String home(){
-        return "index";
+        return "home";
     }
-    @GetMapping(value="/subject/novel_list")
+    @GetMapping(value="/novels/novel_list")
     public String call_forums_with_topics() {
-        return "/novel_list";
+        return "/novels/novel_list";
     }
     @GetMapping(value="/chaos")
     public String call_forums_without_topics() {
-        return "/read";
+        return "/novels/read";
     }
     @GetMapping(value="/create_account")
     public String call_member_signup_page() {
@@ -49,7 +49,7 @@ public class Controller {
     }
 
 
-    @GetMapping(value="/subject/finished_novel_list")
+    @GetMapping(value="/novels/finished_novel_list")
     public String call_the_finished_novel_page(){
         return "/novel_list";
     }
