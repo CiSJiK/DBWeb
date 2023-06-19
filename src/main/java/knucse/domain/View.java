@@ -13,14 +13,6 @@ public class View {
         private int nnum;
         private String nname;
     }
-    @Getter
-    @Entity
-    @Immutable
-    class NovelDoneList{
-        @Id
-        private int nnum;
-        private String nname;
-    }
 }
 
 class Procedure{
@@ -31,6 +23,5 @@ class Procedure{
         @Id
         private int fid;
         private String fname;
-        private boolean isSelected;
     }
 }

@@ -9,7 +9,7 @@ select novel.nnum, novel.nname from novel, ndone where novel.nnum = ndone.nnum a
 delimiter $$
 create or replace procedure feedbackList(in novelNum int)
 BEGIN 
-	select f.fid, f.fname from feedback f where f.nnum = novelNum
+	select fid, fname from feedback where nnum = novelNum;
 END $$
 delimiter ;
 
