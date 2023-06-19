@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <style>
+        .show{
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .layout{
+            align-items: center;
+            margin:0 auto;
+            display: grid;
+            grid-template-columns: 80% 20%;
+            grid-template-rows: 80% 20%;
+            grid-gap: 10px;
+        }
+        .type{
+            grid-column: 1;
+            grid-row: 2;
+        }
+        .button{
+            grid-column: 2;
+            grid-row: 1;
+            width: 100%;
+            bottom: 0;
+        }
+        .insert{
+            grid-row: 2;
+            grid-column: 1;
+        }
+    </style>
+    <div class="container">
+        <div class="layout">
+            <article class="show">
+                <textarea style="width: 100%; margin-top: 100px; height: 500px; font-size: 20pt"></textarea>
+            </article>
+            <div class="button">
+                <div>
+                    <button onclick="location.href='../'">돌아가기</button>
+                </div>
+                <div>
+                    <label for="id">id:</label>
+                    <input type="text" id="id" name="id" placeholder="id 입력">
+                </div>
+                <div>
+                    <label for="pw">pw:</label>
+                    <input type="password" id="pw" name="pw" placeholder="비밀번호">
+                </div>
+            </div>
+            <div class="type">
+                <label for="context">내용: </label>
+                <input type="text" id="context" name="context" placeholder="내용 입력">
+            </div>
+            <div class="button">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

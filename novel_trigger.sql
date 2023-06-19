@@ -1,48 +1,18 @@
-use Novel;
+##use Novel;
 
-show tables;
+##show tables;
 
-show columns from comment;
-
-
-delimiter //
-create or replace trigger insert_comment
-	after insert
-	on comment 
-	for each ROW 
-BEGIN 
-	INSERT  INTO ccfg values(NEW.cno, curdate(), curdate());
-END //
-Delimiter ;
-
-delimiter //
-create or replace trigger update_comment
-	after UPDATE 
-	on comment
-	for each ROW 
-BEGIN 
-	UPDATE ccfg set edate = curdate() where ccfg.cno = old.cno;
-END //
-delimiter ;
-
-delimiter //
-create or replace trigger delete_comment
-	after DELETE 
-	on comment
-	for EACH ROW 
-BEGIN 
-	DELETE from ccfg WHERE ccfg.cno = old.cno;
-END //
-delimiter ;
-
+##show columns from comment;
 
 delimiter //
 create or replace trigger insert_feedback
-	after insert 
+	after insert
 	on feedback
-	for each ROW 
-BEGIN 
-	insert into fvote values(NEW.fid, 0, 0, false);
+	for each ROW
+BEGIN
+	insert into fvote(fid) values(otNEW.fid);
+	insert into fselected(fid) values(otNEW.fid);
+	insert into flis(fid) values(otNEW.fid);
 END //
 delimiter ;
 
@@ -53,5 +23,28 @@ create or replace trigger delete_feedback
 	for each ROW 
 BEGIN 
 	delete from fvote where fvote.fid = OLD.fid;
+	delete from flis where flis.fid = OLD.fid;
+	delete from fselected where fselected.fid = OLD.fid;
+END //
+delimiter ;
+
+delimiter //
+create or replace trigger insert_novel
+	after insert 
+	on novel
+	for each ROW 
+BEGIN 
+	insert into ndone(nnum) values(otNEW.nnum);
+	insert into ncfg(nnum) values(otNEW.nnum);
+END //
+delimiter ;
+
+delimiter //
+create or replace trigger update_novel
+	after update
+	on novel
+	for each ROW
+BEGIN
+	update ncfg set edate = NOW() where ncfg.nnum = OLD.nnum;
 END //
 delimiter ;
