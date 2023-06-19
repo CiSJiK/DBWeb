@@ -1,9 +1,16 @@
 create or replace table novel (
 	nnum int not null auto_increment primary key,
-	nname char(50) not null,
-	ncon text not null,
+	nname char(50) not null
+)engine=innodb;
+
+create or replace table context(
+	cid int not null auto_increment primary key,
+	nnum int not null,
+	ctext text not null,
+	cdate date not null default NOW(),
 	uid char(20) not null,
-	foreign key (uid) references account(uid)
+	foreign key (uid) references account(uid),
+	foreign key (nnum) references novel(nnum)
 )engine=innodb;
 
 create or replace table ndone (
@@ -40,18 +47,18 @@ create table flis (
 	foreign key (fid) references feedback(fid) on delete cascade
 )engine=innodb;
 
-create or replace table fvote(
-	fid int not null,
-	flike int not null default 0,
-	fhate int not null default 0,
-	foreign key (fid) references feedback(fid) on delete cascade
-)engine=innodb;
+#create or replace table fvote(
+#	fid int not null,
+#	flike int not null default 0,
+#	fhate int not null default 0,
+#	foreign key (fid) references feedback(fid) on delete cascade
+#)engine=innodb;
 
-create or replace table fselected (
-	fid int not null,
-	isSelected int not null default false,
-	foreign key (fid) references feedback(fid) on delete cascade
-)engine=innodb;
+#create or replace table fselected (
+#	fid int not null,
+#	isSelected int not null default false,
+#	foreign key (fid) references feedback(fid) on delete cascade
+#)engine=innodb;
 
 
 

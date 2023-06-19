@@ -9,8 +9,7 @@ select novel.nnum, novel.nname from novel, ndone where novel.nnum = ndone.nnum a
 delimiter $$
 create or replace procedure feedbackList(in novelNum int)
 BEGIN 
-	select f.fid, f.fname, s.isSelected from (select fid, fname from feedback where feedback.nnum = novelNum) f, fselected s 
-	where f.fid = s.fid;
+	select f.fid, f.fname from feedback f where f.nnum = novelNum
 END $$
 delimiter ;
 
@@ -18,7 +17,7 @@ delimiter $$
 create or replace procedure readNovel(in novelNum int, out name char(50))
 BEGIN 
 	select nname into name from novel where nnum = novelNum;
-	select ncon from novel where nnum = novelNum;
+	select cid, ctext, cdate, uid from context where nnum = novelNum;
 END $$
 delimiter ;
 

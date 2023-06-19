@@ -10,8 +10,6 @@ create or replace trigger insert_feedback
 	on feedback
 	for each ROW
 BEGIN
-	insert into fvote(fid) values(otNEW.fid);
-	insert into fselected(fid) values(otNEW.fid);
 	insert into flis(fid) values(otNEW.fid);
 END //
 delimiter ;
@@ -22,9 +20,7 @@ create or replace trigger delete_feedback
 	on feedback
 	for each ROW 
 BEGIN 
-	delete from fvote where fvote.fid = OLD.fid;
 	delete from flis where flis.fid = OLD.fid;
-	delete from fselected where fselected.fid = OLD.fid;
 END //
 delimiter ;
 

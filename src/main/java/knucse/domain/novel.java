@@ -1,7 +1,7 @@
 package knucse.domain;
 import jakarta.persistence.*;
 @Entity
-public class novel {
+public class Novel {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int nnum;
     private String nname;
