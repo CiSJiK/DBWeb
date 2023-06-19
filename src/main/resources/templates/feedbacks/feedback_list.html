@@ -52,9 +52,9 @@
 <div class="container">
     <div class="context">
         <form action="/novel/novel_list" method="post">
-            <div th:each="novel":${novel}>
-                <span th:text="${novel.nname}" style="font-size: 20px; margin: 7px;"
-                      th:href="@{novel/{nname}(name = ${novel.nname})}"></span><br/>
+            <div th:each="feedbackList":${feedbackList}>
+                <span th:text="${feedbackList.fid} + ${feedbackList.fname}" style="font-size: 20px; margin: 7px;"
+                      th:href="@{novel/{fid}(fid = ${feedbackList.fid})}"></span><br/>
             </div>
         </form>
     </div>

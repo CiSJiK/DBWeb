@@ -94,22 +94,20 @@
     <div class="container">
         <div class="layout">
             <div class="show">
-                <div class="context" th:each="context : ${context}">
-                    <span th:text="${context.ncon}" style="font-size: 20px; margin: 7px;"></span>
-                    <button class="edit"></button><button class="edit"></button>
+                <div class="context" th:each="readFeedback : ${readFeedback}">
+                    <span th:text="${readFeedback.fcon} + " style="font-size: 20px; margin: 7px;"></span>
                     <br/>
                 </div>
             </div>
             <div class="button">
                 <div class="grid">
-                    <button class="margin" onclick="location.href='./'">피드백 목록</button>
                     <button class="margin" onclick="location.href='../'">돌아가기</button>
                     <input class="margin" id="id" name="id" placeholder="id 입력" type="text">
                     <input class="margin" id="pw" name="pw" placeholder="비밀번호" type="password">
                 </div>
             </div>
             <div class="type">
-                <input id="context" name="context" placeholder="내용 입력" style="height: 50px;  font-size: 20px;" type="text">
+                <input th:id="context" name="context" placeholder="내용 입력" style="height: 50px;  font-size: 20px;" type="text">
             </div>
             <div class="insert">
                 <button type="submit">등록</button>
