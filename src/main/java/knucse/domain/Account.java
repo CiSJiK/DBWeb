@@ -7,6 +7,8 @@ public class Account {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String uid;
 
+    private String upw;
+
     public String getUpw() {
         return upw;
     }
@@ -14,8 +16,6 @@ public class Account {
     public void setUpw(String upw) {
         this.upw = upw;
     }
-
-    private String upw;
 
 
     public String getUid() {

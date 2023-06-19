@@ -1,8 +1,6 @@
-package knucse.domain;
-import jakarta.persistence.*;
-@Entity
-public class Novel {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+package knucse.controller;
+
+public class NovelForm {
     private int nnum;
     private String nname;
     private String ncon;
