@@ -95,6 +95,7 @@
 </head>
 <body>
     <div class="container">
+        <form action="/novels/{nnum}/new" method="post">
         <div class="layout">
             <div class="show">
                 <div class="context">
@@ -130,17 +131,15 @@
                     </form>-->
                 </div>
             </div>
-            <form action="./" method="post">
             <div class="type">
                 <input id="context" name="context" placeholder="내용 입력" style="height: 50px;  font-size: 20px;" type="text">
             </div>
-            </form>
-            <form action="./" method="post">
             <div class="insert">
                 <button type="submit">등록</button>
             </div>
-            </form>
+
         </div>
+        </form>
     </div>
 </body>
 </html>

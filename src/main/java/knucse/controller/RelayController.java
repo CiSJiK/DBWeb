@@ -46,6 +46,25 @@ public class RelayController {
         model.addAttribute("context", entityList);
         return "/novel/read";
     }
+    @PostMapping("/novel/{nnum}/new")
+    public String register_new_context(@PathVariable int nnum, AccountForm an, ContextForm cn, Model model){
+        AccountEntity a = new AccountEntity();
+        ContextEntity e = new ContextEntity();
+        a.setUid(an.getId());
+        a.setUpw(an.getPw());
+        e.setNnum(nnum);
+        e.setUid(an.getId());
+        e.setCtext(cn.getContext());
+        boolean isTrue = accountService.isVaildAccount(a);
+        if(isTrue){
+            contextService.join(e);
+            System.out.println("----- register_context success------");
+        } else{
+            System.out.println("----- register_context fail------");
+        }
+        model.addAttribute("cn", cn);
+        return "/novel/read";
+    }
     @GetMapping(value="/chaos")
     public String call_novel_without_topics(Model model) {
         List<ReadNovelEntity> entityList = contextService.findContext(0);
@@ -89,25 +108,7 @@ public class RelayController {
         return "/novel/read";
     }
 
-    @PostMapping("/novel/{nnum}")
-    public String register_new_context(@PathVariable int nnum, AccountForm an, ContextForm cn, Model model){
-        AccountEntity a = new AccountEntity();
-        ContextEntity e = new ContextEntity();
-        a.setUid(an.getId());
-        a.setUpw(an.getPw());
-        e.setNnum(nnum);
-        e.setUid(an.getId());
-        e.setCtext(cn.getContext());
-        boolean isTrue = accountService.isVaildAccount(a);
-        if(isTrue){
-            contextService.join(e);
-            System.out.println("----- register_context success------");
-        } else{
-            System.out.println("----- register_context fail------");
-        }
-        model.addAttribute("cn", cn);
-        return "/novel/read";
-    }
+
     //@GetMapping("/novel/{nnum}/feedback")
     /*(public String call_feedback_page(@PathVariable int nnum, Model model){
         List<FeedbackListEntity> fb =  feedbackService.getFeedbacks(nnum);
