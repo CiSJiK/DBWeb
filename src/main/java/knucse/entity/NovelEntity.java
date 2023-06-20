@@ -12,7 +12,4 @@ public class NovelEntity {
 
     @Column
     private String nname;
-
-    @Column
-    private String ncon;
 }

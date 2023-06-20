@@ -20,7 +20,6 @@ public class NovelService {
         System.out.println("<<<<< NovelService.join novel 등록 서비스 시작 >>>>> ");
         System.out.println("novel.nnum = " + novel.getNnum());
         System.out.println("novel.nname = " + novel.getNname());
-        System.out.println("feedback.ncon = " + novel.getNcon());
         novelInterface.save(novel);
         return novel.getNnum();
     }

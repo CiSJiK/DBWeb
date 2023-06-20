@@ -46,10 +46,9 @@ public class NovelRepository implements NovelInterface {
 
     @Override
     public int findNewNnum(){
-        List<NovelListEntity> result = em.createQuery("select MAX(nnum) from novelList n",NovelListEntity.class)
-                .getResultList();
-        NovelListEntity temp = result.get(0);
-        return temp.getNnum();
+        NovelListEntity result = em.createQuery("select n from novelList n", NovelListEntity.class)
+                .getResultList().get(0);
+        return result.getNnum();
     }
     @Override
     public List<ReadNovelEntity> findByNnumRead(int nnum) {

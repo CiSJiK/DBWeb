@@ -79,11 +79,12 @@ public class RelayController {
     }
     @PostMapping(value = "/novels/novel_list")
     public String register_new_novel(NovelForm novel, Model model){
-        int num = novelService.findMaxNnum();
         NovelEntity entity = new NovelEntity();
         entity.setNname(novel.getTitle());
+        entity.setNnum(novelService.findMaxNnum() + 1);
+        System.out.println("insert start");
         novelService.join(entity);
-        List<ReadNovelEntity> readNovelEntity = contextService.findContext(num);
+        List<ReadNovelEntity> readNovelEntity = contextService.findContext(entity.getNnum());
         model.addAttribute("readNovelEntity", readNovelEntity);
         return "/novel/read";
     }

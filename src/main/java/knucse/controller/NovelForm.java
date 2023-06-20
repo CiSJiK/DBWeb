@@ -1,7 +1,7 @@
 package knucse.controller;
 
 public class NovelForm {
-    String title;
+    private String title;
 
     public String getTitle() {
         return title;

@@ -5,7 +5,6 @@ public class Novel {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int nnum;
     private String nname;
-    private String ncon;
 
     public int getNnum() {
         return nnum;
@@ -21,13 +20,5 @@ public class Novel {
 
     public void setNname(String nname) {
         this.nname = nname;
-    }
-
-    public String getNcon() {
-        return ncon;
-    }
-
-    public void setNcon(String ncon) {
-        this.ncon = ncon;
     }
 }
