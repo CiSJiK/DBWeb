@@ -24,8 +24,13 @@ public class AccountRepository implements AccountInterface {
 
     @Override
     public Optional<AccountEntity> findByUid(String uid) {
-        AccountEntity account = em.find(AccountEntity.class, uid);
-        return Optional.ofNullable(account);
+        //AccountEntity account = em.find(AccountEntity.class, uid);
+        String jpql = "select a from account a where a.uid = :uid";
+        TypedQuery<AccountEntity> query = em.createQuery(jpql, AccountEntity.class);
+        query.setParameter("uid", uid);
+        List<AccountEntity> a = query.getResultList();
+        if(a.isEmpty()) return Optional.ofNullable(null);
+        return Optional.ofNullable(a.get(0));
     }
 
     @Override
