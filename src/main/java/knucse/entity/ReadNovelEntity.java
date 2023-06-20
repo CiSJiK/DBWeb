@@ -9,7 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
 
-@Getter @Entity(name="readNovel") @Immutable
+@Getter @Setter @Entity(name="read_novel")
 public class ReadNovelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

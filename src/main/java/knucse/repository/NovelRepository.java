@@ -51,10 +51,10 @@ public class NovelRepository implements NovelInterface {
         return result.getNnum();
     }
     @Override
-    public List<ReadNovelEntity> findByNnumRead(int nnum) {
+    public List<ReadNovelEntity> findByNnumRead(int num) {
         List<ReadNovelEntity> result =
-                em.createQuery("select n from readNovel n where n.nnum= nnum",
-                        ReadNovelEntity.class).getResultList();
+                em.createQuery("select n from read_novel n where n.nnum= :num",
+                        ReadNovelEntity.class).setParameter("num", num).getResultList();
         return result;
     }
 }
