@@ -17,6 +17,7 @@ public class AccountRepository implements AccountInterfaceRepository {
         this.em = em;
     }
     @Override
+    @Transactional
     public void save(AccountEntity account) {
         em.persist(account);
     }

@@ -15,8 +15,8 @@ public class NovelListRepository implements NovelListInterfaceRepository{
 
 
     @Override
-    public List<NovelDoneListEntity> findDone(){
-        List<NovelDoneListEntity> novel = em.createQuery("select n from novelDoneList n").getResultList();
+    public List<NovelListEntity> findDone(){
+        List<NovelListEntity> novel = em.createQuery("select n from novelDoneList n").getResultList();
         return novel;
     }
 

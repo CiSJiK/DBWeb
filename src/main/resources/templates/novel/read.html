@@ -5,6 +5,9 @@
     <meta content="user-scalable=no initial-scale=1" name="viewport">
     <title>Title</title>
     <style>
+        td{
+            font-size: 20px; margin: 7px;
+        }
         .margin{
             margin-top: 5px;
             margin-left: 0;
@@ -94,13 +97,28 @@
     <div class="container">
         <div class="layout">
             <div class="show">
-                <div class="context" th:each="readFeedback : ${readFeedback}">
-                    <span th:text="${readFeedback.fcon} + " style="font-size: 20px; margin: 7px;"></span>
+                <div class="context">
+                    <table>
+                        <tbody>
+                            <tr th:each="line : ${context}">
+                                <tr>
+                                    <td th:text="${line.cdate}"/>
+                                    <td th:text="${line.cid}"/>
+                                </tr>
+                                <tr>
+                                    <td th:text="${line.ctext}"/>
+                                </tr>
+                                <td th:text="${line.uid}"/>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <span ></span>
                     <br/>
                 </div>
             </div>
             <div class="button">
-                <button type="button" onclick="location.href='/novel/{nnum}/feedback(nnum=${novel.nnum})';"> 피드백 목록 </button>
+                <button type="button" onclick="location.href='/novels/complete_novel_list'"> 피드백 목록 </button>
                 <div class="grid">
                     <button class="margin" onclick="location.href='../'">돌아가기</button>
                     <input class="margin" id="id" name="id" placeholder="id 입력" type="text">

@@ -14,6 +14,6 @@ public class NovelDoneListEntity {
     @Column
     private String nname;
 
-    @Column
-    private boolean done;
+    //@Column
+    //private boolean ndone;
 }
