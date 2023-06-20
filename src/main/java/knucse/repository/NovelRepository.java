@@ -1,6 +1,7 @@
 package knucse.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import knucse.entity.NovelEntity;
 import knucse.entity.NovelListEntity;
 import knucse.entity.ReadNovelEntity;
@@ -13,6 +14,7 @@ public class NovelRepository implements NovelInterface {
     public NovelRepository(EntityManager em) { this.em = em; }
 
     @Override
+    @Transactional
     public void save(NovelEntity novel){
         em.persist(novel);
     }

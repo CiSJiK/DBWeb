@@ -1,6 +1,7 @@
 package knucse.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import knucse.entity.ContextEntity;
 
 import java.util.Optional;
@@ -12,6 +13,7 @@ public class ContextRepository implements ContextInterface {
         this.em = em;
     }
     @Override
+    @Transactional
     public void save(ContextEntity context){
         em.persist(context);
     }

@@ -1,6 +1,7 @@
 package knucse.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import knucse.entity.FeedbackEntity;
 import knucse.entity.FeedbackListEntity;
 
@@ -14,6 +15,7 @@ public class FeedbackRepository implements FeedbackInterface {
     }
 
     @Override
+    @Transactional
     public void save(FeedbackEntity feedback){
         em.persist(feedback);
     }
