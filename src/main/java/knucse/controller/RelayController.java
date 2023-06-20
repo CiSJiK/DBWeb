@@ -77,19 +77,29 @@ public class RelayController {
         model.addAttribute("novel_list", novelDoneListEntity);
         return "/novel/complete_novel_list";
     }
-    @PostMapping(value = "/novel/{nnum}/new")
-    public String register_new_novel(@PathVariable int nnum, Model model){
+    @PostMapping(value = "/novels/novel_list")
+    public String register_new_novel(NovelForm novel, Model model){
         int num = novelService.findMaxNnum();
-        List<ReadNovelEntity> readNovelEntity = contextService.findContext(nnum);
+        NovelEntity entity = new NovelEntity();
+        entity.setNname(novel.getTitle());
+        novelService.join(entity);
+        List<ReadNovelEntity> readNovelEntity = contextService.findContext(num);
         model.addAttribute("readNovelEntity", readNovelEntity);
         return "/novel/read";
     }
 
     @PostMapping("/novel/{nnum}")
-    public String register_new_context(@PathVariable int nnum, AccountEntity an, ContextEntity cn, Model model){
-        boolean isTrue = accountService.isVaildAccount(an);
+    public String register_new_context(@PathVariable int nnum, AccountForm an, ContextForm cn, Model model){
+        AccountEntity a = new AccountEntity();
+        ContextEntity e = new ContextEntity();
+        a.setUid(an.getId());
+        a.setUpw(an.getPw());
+        e.setNnum(nnum);
+        e.setUid(an.getId());
+        e.setCtext(cn.getContext());
+        boolean isTrue = accountService.isVaildAccount(a);
         if(isTrue){
-            contextService.join(cn);
+            contextService.join(e);
             System.out.println("----- register_context success------");
         } else{
             System.out.println("----- register_context fail------");

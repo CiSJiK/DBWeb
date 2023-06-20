@@ -13,7 +13,7 @@ public class ContextEntity {
     private int nnum;
 
     @Column
-    private int uid;
+    private String uid;
 
     @Column
     private String ctext;

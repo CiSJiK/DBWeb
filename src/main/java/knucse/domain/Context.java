@@ -5,7 +5,7 @@ public class Context {
     @Data
     public static class Create {
         private int nnum;
-        private int uid;
+        private String uid;
         private String ctext;
     }
     @Data
@@ -16,8 +16,8 @@ public class Context {
     public static class Simple {
         private int cid;
         private int nnum;
-        private int uid;
-        private int ctext;
+        private String uid;
+        private String ctext;
         private String cdate;
     }
 }

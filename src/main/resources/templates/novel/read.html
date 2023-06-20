@@ -123,17 +123,23 @@
                     <button type="button">피드백 목록</button>
                 </a>-->
                 <div class="grid">
-                    <button class="margin" onclick="location.href='../'">돌아가기</button>
+                    <button class="margin" onclick="location.href='/'">돌아가기</button>
+                    <!--<form th:action="@{/novels/{nnum}(nnum=${context[0].nnum})}" th:method="post">
                     <input class="margin" id="id" name="id" placeholder="id 입력" type="text">
                     <input class="margin" id="pw" name="pw" placeholder="비밀번호" type="password">
+                    </form>-->
                 </div>
             </div>
+            <form th:action="./" th:method="post">
             <div class="type">
                 <input th:id="context" name="context" placeholder="내용 입력" style="height: 50px;  font-size: 20px;" type="text">
             </div>
+            </form>
+            <form th:action="./" th:method="post">
             <div class="insert">
                 <button type="submit">등록</button>
             </div>
+            </form>
         </div>
     </div>
 </body>
