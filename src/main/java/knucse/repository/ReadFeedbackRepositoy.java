@@ -1,12 +1,11 @@
 package knucse.repository;
 
 import jakarta.persistence.EntityManager;
-import knucse.entity.NovelEntity;
 import knucse.entity.ReadFeedbackEntity;
 
 import java.util.Optional;
 
-public class ReadFeedbackRepositoy implements ReadFeedbackInterfaceRepository{
+public class ReadFeedbackRepositoy implements ReadFeedbackInterface {
     private final EntityManager em;
 
     public ReadFeedbackRepositoy(EntityManager em) { this.em = em; }

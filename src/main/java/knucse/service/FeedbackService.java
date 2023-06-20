@@ -5,15 +5,15 @@ import knucse.entity.FeedbackEntity;
 import knucse.entity.FeedbackListEntity;
 import knucse.entity.ReadFeedbackEntity;
 import knucse.repository.FeedbackInterface;
-import knucse.repository.ReadFeedbackInterfaceRepository;
+import knucse.repository.ReadFeedbackInterface;
 
 import java.util.Optional;
 import java.util.List;
 @Transactional
 public class FeedbackService {
     private final FeedbackInterface repository;
-    private final ReadFeedbackInterfaceRepository readfeed;
-    public FeedbackService(FeedbackInterface feedbackInterfaceRepository, FeedbackInterface r, ReadFeedbackInterfaceRepository f){
+    private final ReadFeedbackInterface readfeed;
+    public FeedbackService(FeedbackInterface feedbackInterfaceRepository, FeedbackInterface r, ReadFeedbackInterface f){
         repository = r;
         readfeed = f;
     }

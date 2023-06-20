@@ -41,11 +41,11 @@ public class SpringConfig {
     @Bean
     public FeedbackInterface flir() {return new FeedbackRepository(em);}
     @Bean
-    public ReadFeedbackInterfaceRepository rfir(){return new ReadFeedbackRepositoy(em);}
+    public ReadFeedbackInterface rfir(){return new ReadFeedbackRepositoy(em);}
 
     @Bean
     public NovelService novelService() {
-        return new NovelService(novelInterfaceRepository(), nlir());
+        return new NovelService(novelInterfaceRepository());
     }
     @Bean
     public NovelInterface novelInterfaceRepository(){
@@ -53,10 +53,11 @@ public class SpringConfig {
     }
     @Bean
     public NovelInterface nlir() { return new NovelRepository(em); }
+
     @Bean
     public ContextService contextService(){ return  new ContextService(contextInterfaceRepository(), readnovel()); }
     @Bean
     public ContextInterface contextInterfaceRepository() { return new ContextRepository(em); }
     @Bean
-    public ReadNovelInterfaceRepository readnovel(){ return new ReadNovelRepository(em);}
+    public NovelInterface readnovel(){ return new NovelRepository(em);}
 }

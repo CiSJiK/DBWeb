@@ -4,6 +4,6 @@ import knucse.entity.ReadFeedbackEntity;
 
 import java.util.Optional;
 
-public interface ReadFeedbackInterfaceRepository {
+public interface ReadFeedbackInterface {
     Optional<ReadFeedbackEntity> findByFid(int fid);
 }

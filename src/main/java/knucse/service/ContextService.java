@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import knucse.entity.ContextEntity;
 import knucse.entity.ReadNovelEntity;
 import knucse.repository.ContextInterface;
+import knucse.repository.NovelInterface;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +12,10 @@ import java.util.Optional;
 @Transactional
 public class ContextService {
     private final ContextInterface contextInterfaceRepository;
-    private final ReadNovelInterfaceRepository readnovel;
+    private final NovelInterface readnovel;
 
-    public ContextService(ContextInterface contextInterfaceRepository, ReadNovelInterfaceRepository r){
-        this.contextInterfaceRepository = contextInterfaceRepository;
+    public ContextService(ContextInterface contextInterface, NovelInterface r){
+        this.contextInterfaceRepository = contextInterface;
         readnovel = r;
 
     }
@@ -30,7 +31,7 @@ public class ContextService {
         return context.getCid();
     }
     public List<ReadNovelEntity> findContext(int nnum){
-        return readnovel.findByNnum(nnum);
+        return readnovel.findByNnumRead(nnum);
     }
     public Optional<ContextEntity> findOne(int cid){
         return contextInterfaceRepository.findByCid(cid);
