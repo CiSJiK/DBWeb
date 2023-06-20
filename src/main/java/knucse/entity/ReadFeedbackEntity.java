@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Immutable;
 
-@Getter @Entity(name="readNovel") @Immutable
+@Getter @Entity(name="readFeedback") @Immutable
 public class ReadFeedbackEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
