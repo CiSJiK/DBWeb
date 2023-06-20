@@ -1,7 +1,7 @@
 package knucse.controller;
 
-public class ContextForm {
-    String id, pw, context;
+public class FeedbackContextForm {
+    String id, pw, content;
 
     public String getId() {
         return id;
@@ -19,11 +19,11 @@ public class ContextForm {
         this.pw = pw;
     }
 
-    public String getContext() {
-        return context;
+    public String getContent() {
+        return content;
     }
 
-    public void setContext(String context) {
-        this.context = context;
+    public void setContent(String content) {
+        this.content = content;
     }
 }
