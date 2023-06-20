@@ -3,7 +3,11 @@ package knucse.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.Immutable;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Date;
 
 @Getter @Entity(name="readNovel") @Immutable
 public class ReadNovelEntity {
@@ -13,12 +17,8 @@ public class ReadNovelEntity {
 
     @Column
     private int cid;
-
     @Column
     private String ctext;
-
-    @Column
-    private String cdate;
     @Column
     private String uid;
 }

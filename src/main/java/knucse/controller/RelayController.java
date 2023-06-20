@@ -40,19 +40,27 @@ public class RelayController {
         model.addAttribute("novel_list", novelList);
         return "/novel/novel_list";
     }
+    @GetMapping(value="/novels/{nnum}")
+    public String call_reading_novel_page(@PathVariable int nnum, Model model){
+        List<ReadNovelEntity> entityList = contextService.findContext(nnum);
+        model.addAttribute("context", entityList);
+        return "/novel/read";
+    }
     @GetMapping(value="/chaos")
     public String call_novel_without_topics(Model model) {
-        List<ReadNovelEntity> novelWithoutTopic = contextService.findContext(0);
-        model.addAttribute("novelWithoutTopic", novelWithoutTopic);
+        List<ReadNovelEntity> entityList = contextService.findContext(0);
+        model.addAttribute("context", entityList);
         return "/novel/read";
     }
     @GetMapping(value="/create_account")
-    public String call_member_signup_page() {
+    public String accountCall()
+    {
         return "/create_account";
     }
     @PostMapping(value="/create_account")
     public String create_account(AccountForm form){
         AccountEntity entity = new AccountEntity();
+        entity.setUnum(0);
         entity.setUid(form.getId());
         entity.setUpw(form.getPw());
         if(form.getPw().equals(form.getCheck())) {
@@ -63,23 +71,12 @@ public class RelayController {
             return "redirect:/create_account";
         }
     }
-
-    @GetMapping(value="/novels/{nnum}")
-    public String call_reading_novel_page(@PathVariable int nnum, Model model){
-        List<ReadNovelEntity> ReadNovelEntity = contextService.findContext(nnum);
-        model.addAttribute("context", ReadNovelEntity);
-        return "/novel/read";
-    }
-
     @GetMapping(value = "/novels/complete_novel_list")
     public String call_complete_novel_page(Model model){
         List<NovelListEntity> novelDoneListEntity = novelService.findDone();
         model.addAttribute("novel_list", novelDoneListEntity);
         return "/novel/complete_novel_list";
     }
-    /*
-    같은 포스트매핑으로 인한 충돌 발생
-     */
     @PostMapping(value = "/novel/{nnum}/new")
     public String register_new_novel(@PathVariable int nnum, Model model){
         int num = novelService.findMaxNnum();
@@ -100,8 +97,8 @@ public class RelayController {
         model.addAttribute("cn", cn);
         return "/novel/read";
     }
-    @GetMapping("/novel/{nnum}/feedback")
-    public String call_feedback_page(@PathVariable int nnum, Model model){
+    //@GetMapping("/novel/{nnum}/feedback")
+    /*(public String call_feedback_page(@PathVariable int nnum, Model model){
         List<FeedbackListEntity> fb =  feedbackService.getFeedbacks(nnum);
         model.addAttribute("fb", fb);
         return "/feedbacks/read";
@@ -117,5 +114,5 @@ public class RelayController {
         }
         model.addAttribute("fn", fn);
         return "/feedbacks/read";
-    }
+    }*/
 }

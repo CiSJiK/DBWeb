@@ -10,7 +10,6 @@ public class ReadNovel {
         private int nnum;
         private int cid;
         private String ctext;
-        private String cdate;
         private String uid;
     }
 }

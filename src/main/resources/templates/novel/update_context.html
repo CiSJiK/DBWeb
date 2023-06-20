@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h3>수정할 내용을 입력해주세요.</h3>
+  <form th:action="@{/novels/{nnum}/update/{cid}(nnum=${context.nnum}, cid=${context.cid})}" th:method="post">
+    <input type="text">
+
+  </form>
+</body>
+</html>

@@ -6,6 +6,7 @@ import lombok.Setter;
 public class Account {
     @Data @Getter @Setter
     public static class Create{
+        private int unum = 0;
         private String uid;
         private String upw;
     }

@@ -100,26 +100,28 @@
                 <div class="context">
                     <table>
                         <tbody>
-                            <tr th:each="line : ${context}">
-                                <tr>
-                                    <td th:text="${line.cdate}"/>
-                                    <td th:text="${line.cid}"/>
-                                </tr>
-                                <tr>
-                                    <td th:text="${line.ctext}"/>
-                                </tr>
-                                <td th:text="${line.uid}"/>
-
+                            <tr th:each="con: ${context}">
+                                <td th:text="${con.cid} + '번째'">100 번째</td>
                             </tr>
+                            <tr th:each="con: ${context}">
+                                <td th:text="${con.ctext}">텍스트 라인</td>
+                            </tr>
+                            <tr th:each="con: ${context}">
+                                <td th:text="${con.uid}">유저 아이디</td>
+                            </tr>
+                                <!---<td><a th:href="@{/novels/{nnum}/update/{cid}(nnum = ${line.nnum}, cid = ${line.cid})}">수정</a></td>
+                            <td><a th:href="@{/novels/{nnum}/delete/{cid}(nnum = ${line.nnum}, cid = ${line.cid})}">삭제</a></td>
+                       ----></tr>
                         </tbody>
-
                     </table>
                     <span ></span>
                     <br/>
                 </div>
             </div>
             <div class="button">
-                <button type="button" onclick="location.href='/novels/complete_novel_list'"> 피드백 목록 </button>
+               <!-- <a th:href="@{/feedbacks/{nnum}(nnum = ${context.nnum})}">
+                    <button type="button">피드백 목록</button>
+                </a>-->
                 <div class="grid">
                     <button class="margin" onclick="location.href='../'">돌아가기</button>
                     <input class="margin" id="id" name="id" placeholder="id 입력" type="text">
