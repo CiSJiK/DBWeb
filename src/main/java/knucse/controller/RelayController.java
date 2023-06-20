@@ -69,8 +69,10 @@ public class RelayController {
         model.addAttribute("novelDoneListEntity", novelDoneListEntity);
         return "/novel/novel_list";
     }
-
-    @PostMapping(value = "/novel/{nnum}")
+    /*
+    같은 포스트매핑으로 인한 충돌 발생
+     */
+    @PostMapping(value = "/novel/{nnum}/new")
     public String register_new_novel(@PathVariable int nnum, Model model){
         int num = novelService.findMaxNnum();
         List<ReadNovelEntity> readNovelEntity = contextService.findContext(nnum);
