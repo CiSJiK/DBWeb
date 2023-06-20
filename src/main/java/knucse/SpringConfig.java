@@ -26,7 +26,7 @@ public class SpringConfig {
         return new AccountService(accountInterfaceRepository());
     }
     @Bean
-    public AccountInterfaceRepository accountInterfaceRepository(){
+    public AccountInterface accountInterfaceRepository(){
         return new AccountRepository(em);
     }
 
@@ -35,11 +35,11 @@ public class SpringConfig {
         return new FeedbackService(feedbackInterfaceRepository(), flir(), rfir());
     }
     @Bean
-    public FeedbackInterfaceRepository feedbackInterfaceRepository(){
+    public FeedbackInterface feedbackInterfaceRepository(){
         return new FeedbackRepository(em);
     }
     @Bean
-    public FeedbackListInterfaceRepository flir() {return new FeedbackListRepository(em);}
+    public FeedbackInterface flir() {return new FeedbackRepository(em);}
     @Bean
     public ReadFeedbackInterfaceRepository rfir(){return new ReadFeedbackRepositoy(em);}
 
@@ -48,15 +48,15 @@ public class SpringConfig {
         return new NovelService(novelInterfaceRepository(), nlir());
     }
     @Bean
-    public NovelInterfaceRepository novelInterfaceRepository(){
+    public NovelInterface novelInterfaceRepository(){
         return new NovelRepository(em);
     }
     @Bean
-    public NovelListInterfaceRepository nlir() { return new NovelListRepository(em); }
+    public NovelInterface nlir() { return new NovelRepository(em); }
     @Bean
     public ContextService contextService(){ return  new ContextService(contextInterfaceRepository(), readnovel()); }
     @Bean
-    public ContextInterfaceRepository contextInterfaceRepository() { return new ContextRepository(em); }
+    public ContextInterface contextInterfaceRepository() { return new ContextRepository(em); }
     @Bean
     public ReadNovelInterfaceRepository readnovel(){ return new ReadNovelRepository(em);}
 }

@@ -1,21 +1,19 @@
 package knucse.service;
 
-import knucse.domain.Feedback;
+import jakarta.transaction.Transactional;
 import knucse.entity.FeedbackEntity;
 import knucse.entity.FeedbackListEntity;
 import knucse.entity.ReadFeedbackEntity;
-import knucse.repository.FeedbackInterfaceRepository;
-import knucse.repository.FeedbackListInterfaceRepository;
+import knucse.repository.FeedbackInterface;
 import knucse.repository.ReadFeedbackInterfaceRepository;
 
 import java.util.Optional;
 import java.util.List;
+@Transactional
 public class FeedbackService {
-    private final FeedbackInterfaceRepository feedbackInterfaceRepository;
-    private final FeedbackListInterfaceRepository repository;
+    private final FeedbackInterface repository;
     private final ReadFeedbackInterfaceRepository readfeed;
-    public FeedbackService(FeedbackInterfaceRepository feedbackInterfaceRepository, FeedbackListInterfaceRepository r, ReadFeedbackInterfaceRepository f){
-        this.feedbackInterfaceRepository = feedbackInterfaceRepository;
+    public FeedbackService(FeedbackInterface feedbackInterfaceRepository, FeedbackInterface r, ReadFeedbackInterfaceRepository f){
         repository = r;
         readfeed = f;
     }
@@ -26,7 +24,7 @@ public class FeedbackService {
         System.out.println("feedback.fid = " + feedback.getFid());
         System.out.println("feedback.fname = " + feedback.getFname());
         System.out.println("feedback.fcon = " + feedback.getFcon());
-        feedbackInterfaceRepository.save(feedback);
+        repository.save(feedback);
         return feedback.getFid();
     }
     /*

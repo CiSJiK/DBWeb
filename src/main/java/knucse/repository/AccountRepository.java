@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class AccountRepository implements AccountInterfaceRepository {
+public class AccountRepository implements AccountInterface {
     private final EntityManager em;
 
     public AccountRepository(EntityManager em){

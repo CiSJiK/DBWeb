@@ -1,12 +1,12 @@
 package knucse.repository;
 
 import jakarta.persistence.EntityManager;
-import knucse.domain.Feedback;
 import knucse.entity.FeedbackEntity;
+import knucse.entity.FeedbackListEntity;
 
 import java.util.Optional;
 import java.util.List;
-public class FeedbackRepository implements FeedbackInterfaceRepository{
+public class FeedbackRepository implements FeedbackInterface {
     private final EntityManager em;
 
     public FeedbackRepository(EntityManager em){
@@ -28,6 +28,12 @@ public class FeedbackRepository implements FeedbackInterfaceRepository{
     public List<FeedbackEntity> findAll(){
         List<FeedbackEntity> result = em.createQuery("select f from feedback f", FeedbackEntity.class)
                 .getResultList();
+        return result;
+    }
+    @Override
+    public List<FeedbackListEntity> findByNnum(int nnum){
+        List<FeedbackListEntity> result = em.createQuery("select f from feedbackList f where f.nnum = nnum",
+                FeedbackListEntity.class).getResultList();
         return result;
     }
 }

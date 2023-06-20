@@ -1,13 +1,12 @@
 package knucse.repository;
 
 import jakarta.persistence.EntityManager;
-import knucse.domain.Context;
 import knucse.entity.ContextEntity;
 
 import java.util.Optional;
 import java.util.List;
 
-public class ContextRepository implements ContextInterfaceRepository{
+public class ContextRepository implements ContextInterface {
     private final EntityManager em;
     public ContextRepository(EntityManager em){
         this.em = em;

@@ -1,19 +1,19 @@
 package knucse.service;
 
-import knucse.domain.Context;
+import jakarta.transaction.Transactional;
 import knucse.entity.ContextEntity;
 import knucse.entity.ReadNovelEntity;
-import knucse.repository.ContextInterfaceRepository;
-import knucse.repository.ReadNovelInterfaceRepository;
+import knucse.repository.ContextInterface;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class ContextService {
-    private final ContextInterfaceRepository contextInterfaceRepository;
+    private final ContextInterface contextInterfaceRepository;
     private final ReadNovelInterfaceRepository readnovel;
 
-    public ContextService(ContextInterfaceRepository contextInterfaceRepository, ReadNovelInterfaceRepository r){
+    public ContextService(ContextInterface contextInterfaceRepository, ReadNovelInterfaceRepository r){
         this.contextInterfaceRepository = contextInterfaceRepository;
         readnovel = r;
 

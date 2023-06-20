@@ -1,16 +1,15 @@
 package knucse.service;
 
 import jakarta.transaction.Transactional;
-import knucse.domain.Account;
 import knucse.entity.AccountEntity;
-import knucse.repository.AccountInterfaceRepository;
+import knucse.repository.AccountInterface;
 
 import java.util.Optional;
 
 @Transactional
 public class AccountService {
-    private final AccountInterfaceRepository accountInterfaceRepository;
-    public AccountService(AccountInterfaceRepository accountInterfaceRepository){
+    private final AccountInterface accountInterfaceRepository;
+    public AccountService(AccountInterface accountInterfaceRepository){
         this.accountInterfaceRepository =accountInterfaceRepository;
     }
 

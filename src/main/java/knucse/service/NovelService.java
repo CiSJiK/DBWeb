@@ -1,21 +1,18 @@
 package knucse.service;
 
-import knucse.domain.Novel;
-import knucse.entity.NovelDoneListEntity;
+import jakarta.transaction.Transactional;
 import knucse.entity.NovelEntity;
 import knucse.entity.NovelListEntity;
-import knucse.repository.NovelInterfaceRepository;
-import knucse.repository.NovelListInterfaceRepository;
+import knucse.repository.NovelInterface;
 
 import java.util.List;
-import java.util.Optional;
-public class NovelService {
-    private final NovelInterfaceRepository novelInterfaceRepository;
-    private final NovelListInterfaceRepository nlr;
 
-    public NovelService(NovelInterfaceRepository novelInterfaceRepository, NovelListInterfaceRepository r){
-        this.novelInterfaceRepository = novelInterfaceRepository;
-        nlr = r;
+@Transactional
+public class NovelService {
+    private final NovelInterface novelInterface;
+
+    public NovelService(NovelInterface novelInterface){
+        this.novelInterface = novelInterface;
     }
 
     public int join(NovelEntity novel) {
@@ -24,18 +21,18 @@ public class NovelService {
         System.out.println("novel.nnum = " + novel.getNnum());
         System.out.println("novel.nname = " + novel.getNname());
         System.out.println("feedback.ncon = " + novel.getNcon());
-        novelInterfaceRepository.save(novel);
+        novelInterface.save(novel);
         return novel.getNnum();
     }
     /*
     전체 소설 목록 불러오기
      */
     public List<NovelListEntity> findNovel(){
-        return nlr.findAll();
+        return novelInterface.findAllList();
     }
     /*
     완결된 소설 목록 불러오기
      */
-    public List<NovelListEntity> findDone(){return nlr.findDone();}
-    public int findMaxNnum(){return nlr.findNewNnum();}
+    public List<NovelListEntity> findDone(){return novelInterface.findDone();}
+    public int findMaxNnum(){return novelInterface.findNewNnum();}
 }
