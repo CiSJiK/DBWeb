@@ -100,7 +100,7 @@ public class RelayController {
     public String register_new_novel(NovelForm novel, Model model){
         NovelEntity entity = new NovelEntity();
         entity.setNname(novel.getTitle());
-        entity.setNnum(novelService.findMaxNnum() + 1);
+        //entity.setNnum(novelService.findMaxNnum() + 1);
         System.out.println("insert start");
         novelService.join(entity);
         List<ReadNovelEntity> readNovelEntity = contextService.findContext(entity.getNnum());
