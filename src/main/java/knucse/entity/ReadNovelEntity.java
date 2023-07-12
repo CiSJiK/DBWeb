@@ -19,6 +19,4 @@ public class ReadNovelEntity {
     private int cid;
     @Column
     private String ctext;
-    @Column
-    private String uid;
 }

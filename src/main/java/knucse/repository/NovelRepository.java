@@ -1,11 +1,14 @@
 package knucse.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import knucse.entity.ContextEntity;
 import knucse.entity.NovelEntity;
 import knucse.entity.NovelListEntity;
 import knucse.entity.ReadNovelEntity;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.List;
 public class NovelRepository implements NovelInterface {
@@ -52,9 +55,21 @@ public class NovelRepository implements NovelInterface {
     }
     @Override
     public List<ReadNovelEntity> findByNnumRead(int num) {
-        List<ReadNovelEntity> result =
-                em.createQuery("select n from read_novel n where n.nnum= :num",
-                        ReadNovelEntity.class).setParameter("num", num).getResultList();
+        TypedQuery<ContextEntity> query =
+                em.createQuery("select n from context n",
+                        ContextEntity.class);
+        List<ContextEntity> entityList = query.getResultList();
+        List<ReadNovelEntity> result = new ArrayList<>();
+        for (ContextEntity i: entityList) {
+            if(i.getNnum() == num)
+            {
+                ReadNovelEntity entity = new ReadNovelEntity();
+                entity.setNnum(num);
+                entity.setCid(i.getCid());
+                entity.setCtext(i.getCtext());
+                result.add(entity);
+            }
+        }
         return result;
     }
 }

@@ -13,9 +13,6 @@ public class ContextEntity {
     private int nnum;
 
     @Column
-    private int unum;
-
-    @Column
     private String ctext;
 
     @Column

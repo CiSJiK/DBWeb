@@ -24,7 +24,6 @@ public class ContextService {
         System.out.println();
         System.out.println("<<<<< ContextService.join context 등록 서비스 시작 >>>>> ");
         System.out.println("context.cid = " + context.getCid());
-        System.out.println("context.uid = " + context.getUnum());
         System.out.println("context.ctext = " + context.getCtext());
         contextInterfaceRepository.save(context);
         return context.getCid();

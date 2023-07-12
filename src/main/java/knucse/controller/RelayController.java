@@ -54,13 +54,15 @@ public class RelayController {
     public String register_new_context(@PathVariable int nnum, ContextForm cn, Model model){
         ContextEntity e = new ContextEntity();
         e.setNnum(nnum);
-        e.setCtext(cn.getContext());
-        e.setUnum(1);
-        Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String format = sdf.format(java.sql.Date.from(d.toInstant()));
-        e.setCdate(format);
-        contextService.join(e);
+        if(!cn.getContext().isBlank())
+        {
+            e.setCtext(cn.getContext());
+            Date d = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String format = sdf.format(java.sql.Date.from(d.toInstant()));
+            e.setCdate(format);
+            contextService.join(e);
+        }
         List<ReadNovelEntity> entityList = contextService.findContext(nnum);
         model.addAttribute("context", entityList);
         return "/novel/read";
@@ -105,7 +107,7 @@ public class RelayController {
         novelService.join(entity);
         List<ReadNovelEntity> readNovelEntity = contextService.findContext(entity.getNnum());
         model.addAttribute("readNovelEntity", readNovelEntity);
-        return "/novel/read";
+        return "redirect:/novels/" + entity.getNnum();
     }
 
 
